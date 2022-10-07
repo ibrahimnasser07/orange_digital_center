@@ -33,14 +33,21 @@ class MyApp extends StatelessWidget {
       ) {
         return CalendarControllerProvider(
           controller: EventController(),
-          child: MaterialApp(
-            title: 'Orange Digital Center',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primarySwatch: Colors.deepOrange,
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => NotesCubit.get(context),
+              ),
+            ],
+            child: MaterialApp(
+              title: 'Orange Digital Center',
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                primarySwatch: Colors.deepOrange,
+              ),
+              initialRoute: "splashPage",
+              onGenerateRoute: AppRouter.generateRoute,
             ),
-            initialRoute: "splashPage",
-            onGenerateRoute: AppRouter.generateRoute,
           ),
         );
       },
