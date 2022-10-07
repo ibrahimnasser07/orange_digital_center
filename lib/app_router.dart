@@ -50,17 +50,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const FAQScreen());
       case "notesScreen":
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => NotesCubit(),
-            child: const NotesScreen(),
-          ),
+          builder: (_) => const NotesScreen(),
         );
       case "addOrEditNotes":
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => NotesCubit(),
-            child: AddOrEditNotes(noteHive: settings.arguments as NoteHive?),
-          ),
+          builder: (_) =>
+              AddOrEditNotes(noteHive: settings.arguments as NoteHive?),
         );
       default:
         return null;
