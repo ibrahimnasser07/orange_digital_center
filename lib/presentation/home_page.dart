@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../my_widgets/app_title.dart';
-import '../my_widgets/home_page_card_item.dart';
+import 'my_widgets/app_title.dart';
+import 'my_widgets/home_page_card_item.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

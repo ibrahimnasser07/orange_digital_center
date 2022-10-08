@@ -2,21 +2,23 @@ import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:orange_digital_center/cubit/notes_cubit.dart';
+import 'package:orange_digital_center/business_logic/auth/login/login_cubit.dart';
+import 'package:orange_digital_center/business_logic/auth/register/register_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 import 'app_router.dart';
-import 'database/note_model.dart';
+import 'bloc_observer.dart';
+import 'business_logic/notes_cubit/notes_cubit.dart';
+import 'data/database/note_model.dart';
+import 'data/remote/dio_helper.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  await DioHelper.init();
   Hive.registerAdapter(NoteHiveAdapter());
-  runApp(
-    BlocProvider(
-      create: (context) => NotesCubit(),
-      child: const MyApp(),
-    ),
-  );
+  Bloc.observer = MyBlocObserver();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -35,9 +37,9 @@ class MyApp extends StatelessWidget {
           controller: EventController(),
           child: MultiBlocProvider(
             providers: [
-              BlocProvider(
-                create: (context) => NotesCubit.get(context),
-              ),
+              BlocProvider(create: (context) => NotesCubit()),
+              BlocProvider(create: (context) => LoginCubit()),
+              BlocProvider(create: (context) => RegisterCubit()),
             ],
             child: MaterialApp(
               title: 'Orange Digital Center',

@@ -1,9 +1,6 @@
 import 'package:accordion/accordion.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../my_widgets/my_shadow.dart';
 
 class FAQScreen extends StatelessWidget {
   const FAQScreen({Key? key}) : super(key: key);

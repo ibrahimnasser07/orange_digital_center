@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
-import '../../models/midterm_item_model.dart';
-import '../../my_widgets/midterm_item.dart';
+import '../../data/models/midterm_item_model.dart';
+import '../my_widgets/midterm_item.dart';
 
 class MidtermsScreen extends StatelessWidget {
   MidtermsScreen({Key? key}) : super(key: key);

@@ -50,6 +50,8 @@ dependencies:
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
   intl: ^0.17.0
+  dio: ^4.0.6
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   hive_generator:

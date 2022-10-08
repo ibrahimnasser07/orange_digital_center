@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../models/midterm_item_model.dart';
+import '../../data/models/midterm_item_model.dart';
 
 class MidtermItem extends StatelessWidget {
   const MidtermItem({

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:orange_digital_center/my_widgets/app_title.dart';
 import 'package:orange_digital_center/presentation/landing_screen.dart';
 import 'package:sizer/sizer.dart';
 
-import '../my_widgets/custom_text_form_field.dart';
+import 'my_widgets/app_title.dart';
+import 'my_widgets/custom_text_form_field.dart';
+
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);

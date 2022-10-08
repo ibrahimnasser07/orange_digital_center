@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../database/note_model.dart';
+import '../../business_logic/notes_cubit/notes_cubit.dart';
+import '../../data/database/note_model.dart';
 
 class Note extends StatelessWidget {
   const Note({Key? key, required this.noteItemModel}) : super(key: key);
@@ -40,7 +41,9 @@ class Note extends StatelessWidget {
               icon: const Icon(Icons.edit, color: Colors.green),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                NotesCubit.get(context).deleteNote(noteItemModel.id);
+              },
               icon: const Icon(
                 Icons.delete,
                 color: Colors.red,

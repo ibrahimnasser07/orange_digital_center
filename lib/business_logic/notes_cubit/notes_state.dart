@@ -16,4 +16,6 @@ class NotesBoxClosed extends NotesState {}
 
 class NotesAdded extends NotesState {}
 
+class NotesUpdated extends NotesState {}
+
 class NotesDeleted extends NotesState {}

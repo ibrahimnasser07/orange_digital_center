@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:orange_digital_center/database/note_model.dart';
 import 'package:orange_digital_center/presentation/home_page.dart';
 import 'package:orange_digital_center/presentation/home_screens/add_edit_note.dart';
 import 'package:orange_digital_center/presentation/home_screens/events_screen.dart';
@@ -17,7 +15,7 @@ import 'package:orange_digital_center/presentation/settings_page.dart';
 import 'package:orange_digital_center/presentation/settings_screens/faq_screen.dart';
 import 'package:orange_digital_center/presentation/splash_screen.dart';
 
-import 'cubit/notes_cubit.dart';
+import 'data/database/note_model.dart';
 
 class AppRouter {
   static Route? generateRoute(RouteSettings settings) {
@@ -49,13 +47,11 @@ class AppRouter {
       case "faqScreen":
         return MaterialPageRoute(builder: (_) => const FAQScreen());
       case "notesScreen":
-        return MaterialPageRoute(
-          builder: (_) => const NotesScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const NotesScreen());
       case "addOrEditNotes":
         return MaterialPageRoute(
           builder: (_) =>
-              AddOrEditNotes(noteHive: settings.arguments as NoteHive?),
+              AddOrEditNotes(noteHive: settings.arguments as NoteHive?)
         );
       default:
         return null;

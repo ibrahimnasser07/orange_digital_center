@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 
-import '../../cubit/notes_cubit.dart';
-import '../../database/note_model.dart';
+import '../../business_logic/notes_cubit/notes_cubit.dart';
+import '../../data/database/note_model.dart';
 
 class AddOrEditNotes extends StatefulWidget {
-  const AddOrEditNotes({Key? key, this.noteHive}) : super(key: key);
+  const AddOrEditNotes({Key? key, this.noteHive, this.noteIndex})
+      : super(key: key);
   final NoteHive? noteHive;
+  final int? noteIndex;
 
   @override
   State<AddOrEditNotes> createState() => _AddOrEditNotesState();
@@ -16,8 +17,17 @@ class AddOrEditNotes extends StatefulWidget {
 
 class _AddOrEditNotesState extends State<AddOrEditNotes> {
   final _formKey = GlobalKey<FormState>();
-  late String title;
-  late String description;
+  late TextEditingController titleController;
+  late TextEditingController descriptionController;
+
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController(
+        text: widget.noteHive != null ? widget.noteHive!.title : null);
+    descriptionController = TextEditingController(
+        text: widget.noteHive != null ? widget.noteHive!.description : null);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +45,7 @@ class _AddOrEditNotesState extends State<AddOrEditNotes> {
             child: Column(
               children: [
                 TextFormField(
+                  controller: titleController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.sp),
@@ -42,13 +53,11 @@ class _AddOrEditNotesState extends State<AddOrEditNotes> {
                     hintText: "Title",
                     label: const Text("Title"),
                   ),
-                  initialValue:
-                      widget.noteHive != null ? widget.noteHive!.title : null,
                   validator: (val) => cubit.validate(val),
-                  onChanged: (val) => title = val,
                 ),
                 SizedBox(height: 20.sp),
                 TextFormField(
+                  controller: descriptionController,
                   maxLines: 5,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -58,24 +67,36 @@ class _AddOrEditNotesState extends State<AddOrEditNotes> {
                     labelText: "description",
                     hintText: "description",
                   ),
-                  initialValue: widget.noteHive != null
-                      ? widget.noteHive!.description
-                      : null,
                   validator: (val) => cubit.validate(val),
-                  onChanged: (val) => description = val,
                 ),
                 SizedBox(height: 20.sp),
                 MaterialButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      cubit.addOrUpdateNote(
-                        NoteHive(
-                          date:
-                              DateFormat.yMd().add_jm().format(DateTime.now()),
-                          title: title,
-                          description: description,
-                        ),
-                      );
+                      if (widget.noteHive != null) {
+                        cubit.updateNote(
+                          widget.noteHive!.id,
+                          NoteHive(
+                            id: widget.noteHive!.id,
+                            date: DateFormat.yMd()
+                                .add_jm()
+                                .format(DateTime.now()),
+                            title: titleController.text,
+                            description: descriptionController.text,
+                          ),
+                        );
+                      } else {
+                        cubit.addNote(
+                          NoteHive(
+                            id: cubit.notes.length,
+                            date: DateFormat.yMd()
+                                .add_jm()
+                                .format(DateTime.now()),
+                            title: titleController.text,
+                            description: descriptionController.text,
+                          ),
+                        );
+                      }
                       Navigator.pop(context);
                     }
                   },

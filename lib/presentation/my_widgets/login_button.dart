@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 class LoginButton extends StatelessWidget {
   const LoginButton({
     Key? key,
+    required this.onPressed,
   }) : super(key: key);
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {
-        Navigator.pushNamedAndRemoveUntil(
-            context, "landingScreen", (route) => false);
-      },
+      onPressed: onPressed,
       color: Colors.deepOrange,
       minWidth: double.infinity,
       height: 50,

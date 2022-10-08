@@ -1,10 +1,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:orange_digital_center/database/note_model.dart';
 
-import '../../cubit/notes_cubit.dart';
-import '../../my_widgets/note_item.dart';
+import '../../business_logic/notes_cubit/notes_cubit.dart';
+import '../../data/database/note_model.dart';
+import '../my_widgets/note_item.dart';
 
 class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
@@ -14,11 +14,30 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-  late Iterable<NoteHive>? notesList;
+  Iterable<NoteHive> notesList = [];
+  late NotesCubit _notesCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _notesCubit = NotesCubit.get(context);
+    _notesCubit.getNotes();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _notesCubit = NotesCubit.get(context);
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _notesCubit.closeNotesBox();
+  }
 
   @override
   Widget build(BuildContext context) {
-    NotesCubit cubit = NotesCubit.get(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Notes"),
@@ -30,15 +49,13 @@ class _NotesScreenState extends State<NotesScreen> {
           }
         },
         builder: (context, state) {
-          cubit.getNotes();
           return ConditionalBuilder(
-            condition: notesList != null,
+            condition: notesList.isNotEmpty,
             builder: (context) {
-              print("NotesList is not null");
               return ListView.builder(
-                itemCount: notesList!.length,
+                itemCount: notesList.length,
                 itemBuilder: (context, index) {
-                  return Note(noteItemModel: notesList!.elementAt(index));
+                  return Note(noteItemModel: notesList.elementAt(index));
                 },
               );
             },
