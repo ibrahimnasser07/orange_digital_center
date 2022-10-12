@@ -1,16 +1,20 @@
-# orange_digital_center
+# Orange Digital Center App
 
-Orange Digital Center Login Pag Design
+Workshop app with orange digital center, 
 
-## Getting Started
+#### What is this app about?
 
-This project is a starting point for a Flutter application.
+- Work with RESTful APIs
+- Using Hive database or/and SQLite
+- Working with postman and data collections
+- Use BLOC luberary as a state managment solution
+- Making a responsive design using Sizer package
 
-A few resources to get you started if this is your first Flutter project:
+#### Images
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| ..  | ..  | .. |
+| :-----------: |:---------------:| :-----------: |
+| <img src="images/WhatsApp Image 2022-10-12 at 9.54.00 PM.jpeg" width="250" height="500"/> | <img src="images/WhatsApp Image 2022-10-12 at 9.54.06 PM (1).jpeg" width="250" height="500"/> | <img src="images/WhatsApp Image 2022-10-12 at 9.54.06 PM (2).jpeg" width="250" height="500"/> |
+| <img src="images/WhatsApp Image 2022-10-12 at 9.54.06 PM.jpeg" width="250" height="500"/> | <img src="images/WhatsApp Image 2022-10-12 at 9.54.08 PM (1).jpeg" width="250" height="500"/> | <img src="images/WhatsApp Image 2022-10-12 at 9.54.08 PM (2).jpeg" width="250" height="500"/> |
+| <img src="images/WhatsApp Image 2022-10-12 at 9.54.08 PM (3).jpeg" width="250" height="500"/> | <img src="images/WhatsApp Image 2022-10-12 at 9.54.08 PM.jpeg" width="250" height="500"/> | <img src="images/WhatsApp Image 2022-10-12 at 9.54.09 PM (1).jpeg" width="250" height="500"/> |
+| <img src="images/WhatsApp Image 2022-10-12 at 9.54.09 PM (2).jpeg" width="250" height="500"/> | <img src="images/WhatsApp Image 2022-10-12 at 9.54.09 PM.jpeg" width="250" height="500"/> | <img src="images/WhatsApp Image 2022-10-12 at 9.54.40 PM.jpeg" width="250" height="500"/> |
