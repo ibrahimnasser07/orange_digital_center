@@ -52,6 +52,8 @@ dependencies:
   intl: ^0.17.0
   dio: ^4.0.6
   fluttertoast: ^8.0.9
+  gender_picker: ^1.1.0
+  flutter_widget_from_html_core: ^0.8.5+3
 
 dev_dependencies:
   hive_generator:

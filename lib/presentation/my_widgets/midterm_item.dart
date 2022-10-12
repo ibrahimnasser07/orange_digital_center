@@ -5,15 +5,21 @@ import '../../data/models/midterm_item_model.dart';
 
 class MidtermItem extends StatelessWidget {
   const MidtermItem({
-    Key? key, required this.midtermItemModel,
+    Key? key,
+    required this.midtermItemModel,
   }) : super(key: key);
   final MidtermItemModel midtermItemModel;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 90.sp,
+      height: 95.sp,
       child: Card(
+        margin: EdgeInsets.fromLTRB(10.sp, 10.sp, 10.sp, 0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.sp),
+          side: BorderSide(width: 1.sp, color: Colors.deepOrangeAccent),
+        ),
         elevation: 5,
         child: Padding(
           padding: EdgeInsets.all(8.sp),

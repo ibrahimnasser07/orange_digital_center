@@ -16,6 +16,7 @@ import 'package:orange_digital_center/presentation/settings_screens/faq_screen.d
 import 'package:orange_digital_center/presentation/splash_screen.dart';
 
 import 'data/database/note_model.dart';
+import 'presentation/settings_screens/terms_screens.dart';
 
 class AppRouter {
   static Route? generateRoute(RouteSettings settings) {
@@ -33,7 +34,7 @@ class AppRouter {
       case "settingsPage":
         return MaterialPageRoute(builder: (_) => const SettingsPage());
       case "registerPage":
-        return MaterialPageRoute(builder: (_) => RegisterScreen());
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case "lecturesScreen":
         return MaterialPageRoute(builder: (_) => const LecturesScreen());
       case "sectionsScreen":
@@ -48,6 +49,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const FAQScreen());
       case "notesScreen":
         return MaterialPageRoute(builder: (_) => const NotesScreen());
+      case "termsScreen":
+        return MaterialPageRoute(builder: (_) => const TermsScreen());
       case "addOrEditNotes":
         return MaterialPageRoute(
           builder: (_) =>

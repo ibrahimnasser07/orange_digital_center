@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../constants/constant_methods.dart';
 import '../../../constants/end_points.dart';
+import '../../../data/models/auth/register_model.dart';
 import '../../../data/remote/dio_helper.dart';
 
 part 'register_state.dart';
@@ -15,6 +15,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   bool visiblePassword = false;
   bool visibleConfirmPassword = false;
+  RegisterModel? model;
 
   /// function to change password visibility
   void changePasswordVisibility() {
@@ -51,13 +52,15 @@ class RegisterCubit extends Cubit<RegisterState> {
       "gender": gender,
     }).then((value) {
       if (value.statusCode == 200) {
+        model = RegisterModel.fromJson(value.data);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil("landingScreen", (_) => false);
         flutterToast(msg: 'Registered Successfully', color: Colors.green);
-
-        Navigator.pushNamedAndRemoveUntil(context, "loginPage", (_) => false);
-        emit(RegisterSuccessState());
+        emit(RegisterSuccessState(model!));
       }
     }).catchError((error) {
       if (kDebugMode) {
+        flutterToast(msg: 'TRY AGAIN!!!', color: Colors.red);
         print(error.toString());
       }
       emit(RegisterErrorState());

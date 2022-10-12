@@ -6,7 +6,7 @@ import '../my_widgets/midterm_item.dart';
 class MidtermsScreen extends StatelessWidget {
   MidtermsScreen({Key? key}) : super(key: key);
 
-  List<MidtermItemModel> midtermItemModelDummyList = [
+  final List<MidtermItemModel> midtermItemModelDummyList = [
     MidtermItemModel(
         title: 'Flutter',
         duration: '2-Hours',

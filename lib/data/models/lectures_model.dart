@@ -1,16 +1,23 @@
-class LecturesModel {
-  final String lectureTitle;
-  final String lectureTime;
-  final String examDate;
-  final String startTime;
-  final String endTime;
+class LectureModel {
+  int? id;
+  String? lectureSubject;
+  String? lectureDate;
+  String? lectureStartTime;
+  String? lectureEndTime;
 
-  LecturesModel({
-    required this.lectureTitle,
-    required this.lectureTime,
-    required this.examDate,
-    required this.startTime,
-    required this.endTime,
+  LectureModel({
+    this.id,
+    this.lectureSubject,
+    this.lectureDate,
+    this.lectureStartTime,
+    this.lectureEndTime,
   });
-}
 
+  LectureModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    lectureSubject = json['lectureSubject'];
+    lectureDate = json['lectureDate'];
+    lectureStartTime = json['lectureStartTime'];
+    lectureEndTime = json['lectureEndTime'];
+  }
+}

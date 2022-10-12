@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
 import 'my_widgets/settings_item.dart';
@@ -25,7 +26,7 @@ class SettingsPage extends StatelessWidget {
           const Divider(),
           SettingsItem(
             title: "Terms & Conditions",
-            onTap: (){},
+            onTap: () => Navigator.pushNamed(context, "termsScreen"),
           ),
           const Divider(),
           SettingsItem(
@@ -40,7 +41,31 @@ class SettingsPage extends StatelessWidget {
           const Divider(),
           SettingsItem(
             title: "Log out",
-            onTap: (){},
+            onTap: () async {
+              await showDialog<bool>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('Do you want to exit the app?'),
+                    actionsAlignment: MainAxisAlignment.spaceBetween,
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          SystemNavigator.pop();
+                        },
+                        child: const Text('Yes'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, false);
+                        },
+                        child: const Text('No'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           ),
         ],
       ),

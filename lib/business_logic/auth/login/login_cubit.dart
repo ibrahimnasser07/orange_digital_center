@@ -18,6 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
   static LoginCubit get(context) => BlocProvider.of(context);
 
   bool visiblePassword = false;
+  late String token;
 
   void changePasswordVisibility() {
     visiblePassword = !visiblePassword;
@@ -46,7 +47,7 @@ class LoginCubit extends Cubit<LoginState> {
             .pushNamedAndRemoveUntil("landingScreen", (_) => false);
         flutterToast(msg: 'Logged in Successfully', color: Colors.green);
         emit(LoginSuccessState(loginModel: LoginModel.fromJson(value.data)));
-        print("ACCESS TOKEN IS: ${value.data['data']['accessToken']}");
+        token = value.data['data']['accessToken'];
       }
     }).catchError((error) {
       if (kDebugMode) print(error);

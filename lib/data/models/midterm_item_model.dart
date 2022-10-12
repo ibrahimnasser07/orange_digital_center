@@ -12,4 +12,6 @@ class MidtermItemModel {
   final String date;
   final String startTime;
   final String endTime;
+
+  
 }

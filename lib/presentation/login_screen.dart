@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:orange_digital_center/business_logic/auth/login/login_cubit.dart';
+import 'package:sizer/sizer.dart';
 
 import 'my_widgets/app_title.dart';
 import 'my_widgets/forgot_password_text.dart';
@@ -48,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: EdgeInsets.symmetric(vertical: 30),
                       child: AppTitle(),
                     ),
-                    const SizedBox(height: 80),
+                    SizedBox(height: 30.sp),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -79,21 +80,22 @@ class _LoginPageState extends State<LoginPage> {
                             return TextFormField(
                               controller: passwordController,
                               decoration: InputDecoration(
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(15),
-                                    ),
+                                border: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(15),
                                   ),
-                                  hintText: "Password",
-                                  suffixIcon: IconButton(
-                                    onPressed: () =>
-                                        loginCubit.changePasswordVisibility(),
-                                    icon: Icon(
-                                      loginCubit.visiblePassword
-                                          ? Icons.visibility_off_sharp
-                                          : Icons.visibility_sharp,
-                                    ),
-                                  )),
+                                ),
+                                hintText: "Password",
+                                suffixIcon: IconButton(
+                                  onPressed: () =>
+                                      loginCubit.changePasswordVisibility(),
+                                  icon: Icon(
+                                    loginCubit.visiblePassword
+                                        ? Icons.visibility_off_sharp
+                                        : Icons.visibility_sharp,
+                                  ),
+                                ),
+                              ),
                               keyboardType: TextInputType.visiblePassword,
                               obscureText: loginCubit.visiblePassword,
                               validator: (val) => loginCubit.validator(val),
@@ -105,10 +107,10 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 80, 0, 20),
+                      padding: EdgeInsets.fromLTRB(0, 30.sp, 0, 20.sp),
                       child: LoginButton(
                         onPressed: () {
-                          if(_formKey.currentState!.validate()){
+                          if (_formKey.currentState!.validate()) {
                             loginCubit.postLogin(
                               context: context,
                               email: emailController.text,
